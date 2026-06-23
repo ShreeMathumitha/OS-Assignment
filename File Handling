@@ -1,0 +1,24 @@
+#include <stdio.h>
+#include <fcntl.h>
+#include <unistd.h>
+
+int main()
+{
+    int fileDescriptor;
+
+    fileDescriptor = open("test.txt", O_CREAT | O_WRONLY, 0644);
+
+    if (fileDescriptor < 0)
+    {
+        printf("File creation failed.\n");
+        return 1;
+    }
+
+    write(fileDescriptor, "Hello Linux", 11);
+
+    close(fileDescriptor);
+
+    printf("Data written successfully.\n");
+
+    return 0;
+}
